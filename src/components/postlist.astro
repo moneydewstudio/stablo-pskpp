@@ -47,7 +47,9 @@ const category = categories.find(
   </div>
 
   <a href="#">
-    <Label theme={category.color}>{category.title}</Label>
+    {category && (
+      <Label theme={category.color}>{category.title}</Label>
+    )}
   </a>
   <h2
     class="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
@@ -74,7 +76,7 @@ const category = categories.find(
     <div class="flex items-center gap-3">
       <div class="relative flex-shrink-0 w-5 h-5">
         {
-          author.image && (
+          author && author.image && (
             <Image
               src={author.image}
               alt="Author Photo"
@@ -86,7 +88,7 @@ const category = categories.find(
           )
         }
       </div>
-      <span class="text-sm">{author.name}</span>
+      <span class="text-sm">{author ? author.name : 'Unknown Author'}</span>
     </div>
     <span class="text-xs text-gray-300 dark:text-gray-600"> &bull;</span>
     <time class="text-sm" datetime={post.data.publishDate}>

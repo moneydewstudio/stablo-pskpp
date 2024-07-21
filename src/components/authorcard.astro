@@ -10,14 +10,14 @@ const { author } = Astro.props;
     <div class="relative flex-shrink-0 mt-1">
       {
         author.image && (
-          <Image
-            src={author.image}
-            alt="Author Photo"
-            width="96"
-            height="96"
-            loading="eager"
-            class="rounded-full object-cover w-24 h-24"
-          />
+        <Image
+          src={author.image}
+          alt="Author Photo"
+          width="96"
+          height="96"
+          loading="eager"
+          class="object-cover w-24 h-24 rounded-[49%_39%_61%_51%]"
+        />
         )
       }
     </div>

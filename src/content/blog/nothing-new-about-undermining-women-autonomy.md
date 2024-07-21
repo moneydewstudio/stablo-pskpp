@@ -3,8 +3,8 @@ title: "There’s Nothing New About Undermining Women’s Autonomy"
 excerpt: "In 2007, the now-defunct San Antonio Independent Christian Film Festival awarded Best of Festival to a documentary called The Monstrous Regiment of Women "
 publishDate: "2024-03-18T11:39:36.050Z"
 image: "../../assets/blog/blog8.avif"
-category: "lifestyle"
-author: "joshua-wood"
+category: "belajar-psikologi"
+author: "robi-maulana"
 tags: [tag1, tag2, tag3]
 ---
 

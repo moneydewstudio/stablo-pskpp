@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import logoImage from "@/assets/logo.svg";
 import darkLogo from "@/assets/logo-dark.svg";
 import { Image } from "astro:assets";
+import Searchbar from "@/components/Searchbar.astro";
 
 interface Menu {
   label: string;
@@ -12,34 +13,23 @@ interface Menu {
 }
 const leftmenu: Menu[] = [
   {
-    label: "Home",
-    href: "/",
+    label: "Belajar Psikologi",
+    href: "/belajar-psikologi",
   },
   {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
+    label: "Kamus Psikologi Online",
+    href: "/kamus-psikologi-online",
   },
 ];
 
 const rightmenu: Menu[] = [
   {
-    label: "Archive",
-    href: "/archive",
+    label: "Tes Kepribadian",
+    href: "/tes-kepribadian-online",
   },
   {
-    label: "Github",
-    href: "https://github.com/web3templates/stablo-astro",
-    external: true,
-    badge: "new",
-  },
-  {
-    label: "Download",
-    href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
-    external: true,
+    label: "Artikel",
+    href: "/artikel-psikologi",
   },
 ];
 
@@ -104,6 +94,13 @@ const mobilemenu: Menu[] = [...leftmenu, ...rightmenu];
             </a>
           ))
         }
+        <button
+        id="searchToggle"
+        class="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
       </div>
     </div>
     <div class="navmenu-toggle hidden">
@@ -120,16 +117,35 @@ const mobilemenu: Menu[] = [...leftmenu, ...rightmenu];
             </a>
           ))
         }
+        <button
+        id="mobileSearchToggle"
+        class="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+        Search
+      </button>
       </div>
     </div>
   </nav>
+  <div id="searchbarContainer" class="hidden mt-4">
+    <Searchbar />
+  </div>
 </Container>
 
 <script is:inline>
   const menuButton = document.getElementById("menu");
+  const searchToggle = document.getElementById("searchToggle");
+  const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+  const searchbarContainer = document.getElementById("searchbarContainer");
+
   menuButton.addEventListener("click", () => {
     [...document.querySelectorAll(".navmenu-toggle")].forEach((Element) => {
       Element.classList.toggle("hidden");
     });
   });
+
+  function toggleSearch() {
+    searchbarContainer.classList.toggle("hidden");
+  }
+
+  searchToggle.addEventListener("click", toggleSearch);
+  mobileSearchToggle.addEventListener("click", toggleSearch);
 </script>

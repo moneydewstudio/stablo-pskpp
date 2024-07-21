@@ -1,0 +1,72 @@
+---
+// Searchbar.astro
+---
+
+<div id="searchContainer">
+    <input type="text" id="search" placeholder="Search...">
+    <div id="searchResults"></div>
+  </div>
+  
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      let pagefind;
+      const searchField = document.querySelector("#search");
+      const searchResults = document.querySelector("#searchResults");
+  
+      searchField.addEventListener("focus", async () => {
+        if (!pagefind) {
+          pagefind = await import("/pagefind/pagefind.js");
+          await pagefind.options({
+            ranking: {
+              pageLength: 0.5,
+            },
+          });
+          pagefind.init();
+        }
+      });
+  
+      searchField.addEventListener("keyup", async (e) => {
+        const query = e.target.value;
+        if (query.length > 1) {
+          const search = await pagefind.debouncedSearch(query);
+          displayResults(search.results);
+        } else {
+          searchResults.innerHTML = '';
+        }
+      });
+  
+      async function displayResults(results) {
+        searchResults.innerHTML = '';
+        for (const result of results) {
+          const data = await result.data();
+          const resultElement = document.createElement('div');
+          resultElement.innerHTML = `
+            <h3><a href="${data.url}">${data.meta.title}</a></h3>
+            <p>${data.excerpt}</p>
+          `;
+          searchResults.appendChild(resultElement);
+        }
+      }
+    });
+  </script>
+  
+  <style>
+    #searchContainer {
+      position: relative;
+      width: 300px;
+    }
+    #search {
+      width: 100%;
+      padding: 8px;
+    }
+    #searchResults {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>

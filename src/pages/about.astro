@@ -5,8 +5,7 @@ import { Image, getImage } from "astro:assets";
 import { authors } from "@/data/authors";
 import Pagetitle from "@/components/pagetitle.astro";
 import Link from "@/components/ui/link.astro";
-
-
+import Searchbar from "@/components/Searchbar.astro";
 ---
 
 <Layout title="About">
@@ -48,6 +47,7 @@ import Link from "@/components/ui/link.astro";
         backgrounds, bringing different personalities, experiences and skills to
         the job. This is what makes our team so special.
       </p>
+      <Searchbar />
       <div class="mt-8">
         <Link href="/contact" style="primary">Get in touch</Link>
       </div>
