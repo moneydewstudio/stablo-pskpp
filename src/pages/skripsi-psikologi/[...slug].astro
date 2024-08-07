@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getFormattedDate } from "@/utils/all";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+type Props = CollectionEntry<"skripsipsikologi">;
+
+export async function getStaticPaths() {
+  const skripsiEntries = await getCollection("skripsipsikologi");
+  return skripsiEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <Container>
+    <div class="max-w-screen-md mx-auto">
+      <h1 class="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+        {entry.data.title}
+      </h1>
+      <div class="flex justify-center mt-3 space-x-3 text-gray-500">
+        <div class="flex items-center gap-3">
+          <div>
+            <time
+              class="text-gray-500 dark:text-gray-400"
+              datetime={entry.data.publishDate.toISOString()}>
+              {getFormattedDate(entry.data.publishDate)}
+            </time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <Container>
+    <article class="max-w-screen-md mx-auto">
+      <div class="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-600">
+        <Content />
+      </div>
+      <div class="flex justify-center mt-7 mb-7">
+        <a
+          href="/skripsi-psikologi"
+          class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-900 dark:text-white bg-blue-50 hover:bg-blue-100">
+          ← View all entries
+        </a>
+      </div>
+    </article>
+  </Container>
+</Layout>

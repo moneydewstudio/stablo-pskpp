@@ -1,0 +1,27 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const mbtiTypes = [
+  "INTJ", "INTP", "ENTJ", "ENTP",
+  "INFJ", "INFP", "ENFJ", "ENFP",
+  "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+  "ISTP", "ISFP", "ESTP", "ESFP"
+];
+---
+
+<Layout title="MBTI - Tes Kepribadian">
+  <Container>
+    <h1 class="text-4xl font-bold mb-8">MBTI Personality Types</h1>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {mbtiTypes.map((type) => (
+        <a
+          href={`/tes-kepribadian/mbti/${type.toLowerCase()}/`}
+          class="p-4 border rounded-lg text-center hover:bg-gray-100 transition-colors"
+        >
+          {type}
+        </a>
+      ))}
+    </div>
+  </Container>
+</Layout>

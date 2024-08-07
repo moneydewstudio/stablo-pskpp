@@ -2,7 +2,10 @@
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.framework.id": "astro",
   "frontMatter.preview.host": "http://localhost:4321",
-  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.publicFolder": {
+    "path": "src/assets",
+    "relative": true
+  },
   "frontMatter.content.pageFolders": [
     {
       "title": "blog",
@@ -43,5 +46,6 @@
         }
       ]
     }
-  ]
+  ],
+  "frontMatter.git.enabled": true
 }

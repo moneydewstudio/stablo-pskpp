@@ -1,12 +1,15 @@
 ---
-title: Apa Alasan Psikologis Seseorang Suka Kucing?
-pubDate: 2024-07-21T17:42:20.813Z
-type: default
+title: "Apa Alasan Psikologis Seseorang Suka Kucing?"
+excerpt: "Suka kucing? Ini alasan psikologisnya."
+publishDate: "2024-07-22T23:40:36.050Z"
+image: "../../assets/blog/blog1.jpg"
+# category slug: choose from "./src/data/category.js"
 category: "belajar-psikologi"
 author: "robi-maulana"
+tags: [kucing, belajar psikologi]
 ---
 
-Saya sama istrir punya banyak perbedaan.
+Saya sama istri punya banyak perbedaan.
 Tapi ada satu yang buat saya agak sulit diterima: dia gak suka kucing.
 Dia ngerasa risih kalo ada kucing ngeliatin dia. Dia panik kalo kucing jalan ngedeketin dia, padahal ya si kucing juga bukan mau ngegangguin dia sih. Kegeeran.
 Sebaliknya, saya suka kucing. Terutama kucing-kucing di sekitaran warung makan dan kantin, yang kadang jinak gitu sama orang yang nggak dikenal. Asik aja ngejawil dagu mereka atau gelitik perut mereka.

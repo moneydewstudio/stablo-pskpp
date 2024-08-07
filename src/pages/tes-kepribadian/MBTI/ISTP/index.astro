@@ -1,0 +1,34 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type TesKepribadianEntry = CollectionEntry<"teskepribadian">;
+
+const allEntries = await getCollection("teskepribadian");
+const istpEntries = allEntries.filter((entry) => 
+  entry.data.tags.includes("MBTI") && entry.data.tags.includes("ISTP")
+);
+
+const sortedEntries = istpEntries
+  .filter((entry): entry is TesKepribadianEntry => !entry.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout title="ISTP - MBTI Personality Type">
+  <Container>
+    <h1 class="text-4xl font-bold mb-8">ISTP Personality Type</h1>
+    <p class="mb-8">Explore content related to the ISTP personality type.</p>
+    <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+      {sortedEntries.map((entry) => (
+        <article class="mb-6">
+          <h2 class="text-2xl font-semibold mb-2">
+            <a href={`/tes-kepribadian/${entry.slug}/`}>{entry.data.title}</a>
+          </h2>
+          <p>{entry.data.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Layout>

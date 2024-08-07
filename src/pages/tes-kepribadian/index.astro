@@ -1,0 +1,44 @@
+---
+import Container from "@/components/container.astro";
+import Postlist from "@/components/postlist.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const tesKepribadianEntries = await getCollection("teskepribadian");
+const sortedEntries = tesKepribadianEntries
+  .filter(entry => !entry.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+---
+
+<Layout title="Tes Kepribadian">
+  <Container>
+    <main>
+      <h1 class="text-4xl font-bold mb-8">Tes Kepribadian</h1>
+      <div class="grid gap-10 lg:gap-10 md:grid-cols-2">
+        {
+          sortedEntries
+            .slice(0, 2)
+            .map((entry) => (
+              <Postlist post={entry} aspect="landscape" preloadImage={true} />
+            ))
+        }
+      </div>
+      <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+        {
+          sortedEntries
+            .slice(2)
+            .map((entry) => <Postlist post={entry} aspect="square" />)
+        }
+      </div>
+    </main>
+    <nav class="mb-8">
+      <ul>
+        <li>
+          <a href="/tes-kepribadian/mbti/" class="text-blue-600 hover:underline">MBTI Tests</a>
+        </li>
+        <!-- Add other subpage links here -->
+      </ul>
+    </nav>
+  </Container>
+</Layout>
